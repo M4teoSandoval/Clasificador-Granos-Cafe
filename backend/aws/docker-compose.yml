@@ -1,0 +1,67 @@
+version: "3.8"
+
+services:
+
+  # Base de datos
+  postgres:
+    image: postgres:15
+    container_name: cafe_db
+    restart: always
+    environment:
+      POSTGRES_DB: clasificador_cafe
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: cafecolombia2026
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  # Motor de automatización
+  n8n:
+    image: n8nio/n8n
+    container_name: cafe_n8n
+    restart: always
+    ports:
+      - "5678:5678"
+    environment:
+      - N8N_BASIC_AUTH_ACTIVE=true
+      - N8N_BASIC_AUTH_USER=admin
+      - N8N_BASIC_AUTH_PASSWORD=admin123
+      - DB_TYPE=postgresdb
+      - DB_POSTGRESDB_HOST=postgres
+      - DB_POSTGRESDB_PORT=5432
+      - DB_POSTGRESDB_DATABASE=clasificador_cafe
+      - DB_POSTGRESDB_USER=admin
+      - DB_POSTGRESDB_PASSWORD=cafecolombia2026
+    volumes:
+      - n8n_data:/home/node/.n8n
+      - ./modelo:/modelo   # aquí va el modelo .tflite
+    depends_on:
+      - postgres
+
+  # API de clasificación
+  fastapi:
+    build: ./fastapi
+    container_name: cafe_api
+    restart: always
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./modelo:/modelo
+    depends_on:
+      - postgres
+      - n8n
+
+  # Dashboard web
+  frontend:
+    build: ../../frontend
+    container_name: cafe_frontend
+    restart: always
+    ports:
+      - "3000:3000"
+    depends_on:
+      - fastapi
+
+volumes:
+  postgres_data:
+  n8n_data:
