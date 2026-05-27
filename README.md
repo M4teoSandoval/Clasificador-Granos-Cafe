@@ -41,8 +41,6 @@ Sistema inteligente de clasificación de granos de café basado en visión por c
 - **n8n** — Automatización de flujos y alertas inteligentes.
 - **Telegram Bot** — Notificaciones de lotes con baja calidad.
 
-### 🧰 Hardware
-- **Raspberry Pi** — Control físico de servos para separación de granos.
 
 ### 📦 Control de Versiones
 - **GitHub** — Gestión del repositorio y control de versiones.
