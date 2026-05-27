@@ -102,8 +102,13 @@ function Sidebar({ view, setView, total }) {
       {/* Logo */}
       <div className="px-5 py-5" style={{ borderBottom: '1px solid var(--border)' }}>
         <div className="flex items-center gap-2.5">
-          <div className="w-8 h-8 rounded-xl flex items-center justify-center font-display font-800 text-sm"
-            style={{ background: 'var(--accent)', color: 'var(--bg)' }}>CV</div>
+          <div className="w-8 h-8 rounded-xl flex items-center justify-center"
+            style={{ background: 'var(--accent)' }}>
+            <svg viewBox="0 0 24 24" width="18" height="18">
+              <ellipse cx="12" cy="12" rx="7" ry="9" fill="#2D5016" transform="rotate(-15, 12, 12)" />
+              <path d="M12 4.5 Q 7 12 12 19.5" stroke="#1A3308" strokeWidth="1.5" fill="none" strokeLinecap="round" />
+            </svg>
+          </div>
           <div>
             <p className="font-display font-700 text-sm" style={{ color: 'var(--text)' }}>CaféVision</p>
             <p className="text-xs font-mono" style={{ color: 'var(--subtle)' }}>Sistema IA</p>
