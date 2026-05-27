@@ -50,12 +50,12 @@ Sistema inteligente de clasificación de granos de café basado en visión por c
 ## Arquitectura del Sistema
 
 ```
-┌──────────────┐     ┌──────────────┐     ┌──────────────┐
-│  Mobile App  │     │   Dashboard  │     │  Raspberry   │
-│  (Expo/RN)   │     │  (React+Vite)│     │   (Fisico)   │
-└──────┬───────┘     └──────┬───────┘     └──────┬───────┘
-       │                    │                    │
-       └──────────┬─────────┴─────────┬──────────┘
+┌──────────────┐     ┌──────────────┐     
+│  Mobile App  │     │   Dashboard  │     
+│  (Expo/RN)   │     │  (React+Vite)│     
+└──────┬───────┘     └──────┬───────┘     
+       │                    │                    
+       └──────────┬─────────┴─────────┬
                   │                   │
          ┌────────▼────────┐  ┌──────▼──────┐
          │  FastAPI (EC2)  │  │  n8n (EC2)  │
@@ -151,7 +151,6 @@ clasificador-cafe/
 - ✅ Almacenamiento de resultados en la nube (AWS RDS).
 - ✅ API REST para integración con frontend y automatizaciones.
 - ✅ Alertas automáticas a Telegram ante lotes de baja calidad (n8n).
-- ✅ Integración con Raspberry Pi para control físico.
 
 ---
 
